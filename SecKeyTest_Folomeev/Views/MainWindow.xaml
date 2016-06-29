@@ -1,0 +1,70 @@
+﻿<Window x:Class="SecKeyTest_Folomeev.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:VM="clr-namespace:SecKeyTest_Folomeev.ViewModels"
+        mc:Ignorable="d"
+        Title="Тестовое задание. Фоломеев В.В." Height="350" Width="600" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <VM:MainViewModel />
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StatusBar Grid.Row="1" >
+            <Label x:Name="label" Content="{Binding Path=status, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label x:Name="label1" Content="{Binding Path=selectedRow, UpdateSourceTrigger=PropertyChanged}" />
+        </StatusBar>
+        <Grid Grid.Row="0" Name="ContentView">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1">
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.453"/>
+                        <GradientStop Color="#FFFFECB4"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <Image x:Name="image" Height="50" HorizontalAlignment="Right" Source="/SecKeyTest_Folomeev;component/Resources/ks_logo2.png" Margin="3,3,3,3"/>
+                <GroupBox Header="Количество записей" Height="80">
+                    <StackPanel>
+                        <TextBox Height="25" Margin="3,3,3,3" Text="{Binding recordsInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button HorizontalAlignment="Center" Command="{Binding GenerateRecords}" Content="{Binding buttonText, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Ввод/вывод данных" Height="80" Margin="0,10,0,0">
+                    <StackPanel>
+                        <Button Margin="5,5,5,5" Command="{Binding SaveXML}">Сохранить XML</Button>
+                        <Button Margin="5,5,5,5" Command="{Binding OpenXML}">Загрузить XML</Button>
+                    </StackPanel>
+                </GroupBox>
+                <Label x:Name="label2" Content="{Binding Path=count}"/>
+
+            </StackPanel>
+            <DataGrid x:Name="dataGrid" Margin="3,3,3,3"
+            ItemsSource="{Binding RecordList, UpdateSourceTrigger=PropertyChanged}"                   
+            SelectedItem="{Binding selectedRecord, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+    		AutoGenerateColumns="False"
+    		RowDetailsVisibilityMode="VisibleWhenSelected" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="ID"/>
+                    <DataGridTextColumn Binding="{Binding StringKey}" Header="Строковый ключ"/>
+                    <DataGridTextColumn Binding="{Binding DigitalKey}" Header="Цифровой ключ"/>
+                    <DataGridTextColumn Binding="{Binding RandomDigit}" Header="Случайное число"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+
+
+        </Grid>
+
+    </Grid>
+</Window>

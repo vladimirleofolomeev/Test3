@@ -1,0 +1,21 @@
+﻿<Window x:Class="SecKeyTest_Folomeev.Views.ProgressViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:VM="clr-namespace:SecKeyTest_Folomeev.ViewModels"
+        mc:Ignorable="d"
+        Title="Прогресс..." Height="100" Width="250" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <VM:ProgressViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="135*"/>
+        </Grid.ColumnDefinitions>
+        <ProgressBar x:Name="prgBar" HorizontalAlignment="Left" Height="20" Margin="75,15,0,0" VerticalAlignment="Top" Width="157" Minimum="0" Maximum="100" Grid.ColumnSpan="2"/>
+        <Label x:Name="label" Content="Прогресс:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="0" HorizontalAlignment="Left" Margin="37,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.438,0.846" Grid.Column="1"/>
+    </Grid>
+</Window>
